@@ -21,25 +21,7 @@ Petit serveur personnel monté sur un vieux PC portable, pour m'entraîner à l'
 
 ## Architecture
 
-```mermaid
-flowchart LR
-    subgraph Clients
-        PC["PC Windows<br/>SSH par clé"]
-        IP["iPhone<br/>Tailscale"]
-    end
-    BOX["Box internet<br/>aucun port ouvert"]
-    TS(["Tailscale<br/>VPN"])
-    subgraph SRV["Serveur : portable ASUS, Debian 13"]
-        UFW["Pare-feu UFW"]
-        SSH["SSH clé uniquement<br/>+ Fail2ban"]
-        CASA["CasaOS + Docker<br/>port 81"]
-    end
-    PC -->|"réseau local, port 22"| UFW
-    IP --> TS --> UFW
-    BOX -. "rien n'est exposé" .- UFW
-    UFW --> SSH
-    UFW --> CASA
-```
+![Architecture du home lab](architecture.svg)
 
 ## Sécurisation
 
