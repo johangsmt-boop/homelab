@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 400" width="900" height="400" font-family="Arial, Helvetica, sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#374151"/>
+    </marker>
+  </defs>
+  <rect width="900" height="400" fill="#ffffff"/>
+
+  <!-- Clients -->
+  <rect x="20" y="40" width="200" height="260" rx="12" fill="#f3f4f6" stroke="#9ca3af"/>
+  <text x="120" y="64" text-anchor="middle" font-size="14" font-weight="bold" fill="#374151">Clients</text>
+  <rect x="40" y="80" width="160" height="70" rx="8" fill="#dbeafe" stroke="#3b82f6"/>
+  <text x="120" y="110" text-anchor="middle" font-size="15" font-weight="bold" fill="#1e3a8a">PC Windows</text>
+  <text x="120" y="132" text-anchor="middle" font-size="13" fill="#1e3a8a">SSH par clé</text>
+  <rect x="40" y="200" width="160" height="70" rx="8" fill="#dbeafe" stroke="#3b82f6"/>
+  <text x="120" y="230" text-anchor="middle" font-size="15" font-weight="bold" fill="#1e3a8a">iPhone</text>
+  <text x="120" y="252" text-anchor="middle" font-size="13" fill="#1e3a8a">Tailscale</text>
+
+  <!-- Tailscale -->
+  <rect x="330" y="200" width="140" height="70" rx="35" fill="#ede9fe" stroke="#7c3aed"/>
+  <text x="400" y="230" text-anchor="middle" font-size="15" font-weight="bold" fill="#4c1d95">Tailscale</text>
+  <text x="400" y="252" text-anchor="middle" font-size="13" fill="#4c1d95">VPN</text>
+
+  <!-- Internet -->
+  <rect x="330" y="300" width="140" height="60" rx="8" fill="#fef2f2" stroke="#dc2626" stroke-dasharray="6 4"/>
+  <text x="400" y="326" text-anchor="middle" font-size="14" font-weight="bold" fill="#991b1b">Box internet</text>
+  <text x="400" y="346" text-anchor="middle" font-size="12" fill="#991b1b">aucun port ouvert</text>
+
+  <!-- Serveur -->
+  <rect x="560" y="40" width="320" height="340" rx="12" fill="#f0fdf4" stroke="#16a34a"/>
+  <text x="720" y="64" text-anchor="middle" font-size="14" font-weight="bold" fill="#166534">Serveur : portable ASUS, Debian 13</text>
+  <rect x="590" y="80" width="260" height="60" rx="8" fill="#dcfce7" stroke="#16a34a"/>
+  <text x="720" y="106" text-anchor="middle" font-size="15" font-weight="bold" fill="#166534">Pare-feu UFW</text>
+  <text x="720" y="126" text-anchor="middle" font-size="12" fill="#166534">entrant refusé par défaut</text>
+  <rect x="590" y="190" width="260" height="60" rx="8" fill="#dcfce7" stroke="#16a34a"/>
+  <text x="720" y="216" text-anchor="middle" font-size="15" font-weight="bold" fill="#166534">SSH</text>
+  <text x="720" y="236" text-anchor="middle" font-size="12" fill="#166534">clé uniquement + Fail2ban</text>
+  <rect x="590" y="290" width="260" height="60" rx="8" fill="#dcfce7" stroke="#16a34a"/>
+  <text x="720" y="316" text-anchor="middle" font-size="15" font-weight="bold" fill="#166534">CasaOS + Docker</text>
+  <text x="720" y="336" text-anchor="middle" font-size="12" fill="#166534">interface sur le port 81</text>
+
+  <!-- Flèches -->
+  <line x1="200" y1="100" x2="588" y2="100" stroke="#374151" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="394" y="92" text-anchor="middle" font-size="12" fill="#374151">réseau local, port 22</text>
+
+  <line x1="200" y1="235" x2="328" y2="235" stroke="#374151" stroke-width="2" marker-end="url(#arrow)"/>
+  <path d="M 470 235 L 530 235 L 530 125 L 588 125" fill="none" stroke="#374151" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <line x1="720" y1="140" x2="720" y2="188" stroke="#374151" stroke-width="2" marker-end="url(#arrow)"/>
+  <path d="M 850 110 L 868 110 L 868 320 L 852 320" fill="none" stroke="#374151" stroke-width="2" marker-end="url(#arrow)"/>
+</svg>
