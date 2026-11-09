@@ -84,7 +84,42 @@ sudo systemctl enable fail2ban
 sudo systemctl restart fail2ban
 sudo fail2ban-client status sshd
 ```
+## Labo attaque et défense
 
+Un deuxième volet du homelab : une application volontairement vulnérable (OWASP Juice Shop) installée sur le serveur, pour s'entraîner à trouver et comprendre des failles web réelles, dans un cadre légal et isolé.
+
+### Mise en place
+
+- Juice Shop tourne dans un conteneur Docker, lié uniquement à `127.0.0.1` sur le serveur (jamais exposé sur le réseau local).
+- Accès depuis mon PC via un tunnel SSH :
+  ```bash
+  ssh -i cyberdevhomelab -L 3000:127.0.0.1:3000 homelab@IP_SERVEUR
+  ```
+  puis `http://localhost:3000` dans le navigateur.
+
+### Défi 1 : trouver le compte administrateur
+
+En inspectant les requêtes réseau (onglet Réseau des outils de développement, F12), certaines réponses de l'API exposaient plus de données que ce qui était affiché à l'écran. Ça a permis d'identifier l'adresse du compte admin : `admin@juice-sh.op`.
+
+**Leçon retenue :** une API ne doit jamais renvoyer plus de données que nécessaire à l'affichage, même si l'interface n'en montre qu'une partie.
+
+### Défi 2 : contourner la connexion (injection SQL)
+
+En testant des caractères spéciaux dans le formulaire de connexion, le serveur a renvoyé une erreur SQL révélant la requête brute construite côté serveur :
+
+```
+SELECT * FROM Users WHERE email = '<email saisi>' AND password = '<hash du mdp>' AND deletedAt IS NULL
+```
+
+Le texte saisi dans le formulaire est inséré directement dans la requête, sans être filtré : c'est une injection SQL classique.
+
+**Leçon retenue :** une entrée utilisateur ne doit jamais être concaténée directement dans une requête SQL. La protection consiste à utiliser des **requêtes préparées/paramétrées**, où la valeur saisie est toujours traitée comme une donnée et jamais comme du code SQL.
+
+### Outils utilisés
+
+- Docker (conteneur isolé, exposé uniquement en local)
+- Tunnel SSH pour l'accès à distance
+- Outils de développement du navigateur (onglet Réseau)
 ## Problèmes rencontrés et solutions
 
 - **`ssh-copy-id` absent sous Windows** : remplacé par une commande PowerShell avec `type ... | ssh`.
